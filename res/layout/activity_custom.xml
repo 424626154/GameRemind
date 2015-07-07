@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_2"
+    android:orientation="vertical" >
+	<include layout="@layout/include_title_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/fb_input_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/umeng_fb_item_line_height"
+                android:background="@color/umeng_fb_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp" >
+
+                <Button
+                    android:id="@+id/fb_send_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/msg_android_send_out_button"
+                    android:gravity="center"
+                    android:text="@string/umeng_fb_send"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/umeng_fb_item_content_size" />
+
+                <EditText
+                    android:id="@+id/fb_send_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/fb_send_btn"
+                    android:layout_toStartOf="@id/fb_send_btn"
+                    android:hint="@string/umeng_fb_feedback"
+                    android:textSize="@dimen/umeng_fb_item_content_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/fb_reply_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/fb_input_layout" >
+
+            <ListView
+                android:id="@+id/fb_reply_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="#0000"
+                android:divider="@null"
+                android:dividerHeight="5dp"
+                android:fadingEdge="none"
+                android:scrollbarStyle="outsideOverlay" >
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+</LinearLayout>

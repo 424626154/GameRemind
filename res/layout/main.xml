@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent" android:orientation="vertical"  
+  android:layout_height="wrap_content">
+  
+	<Button android:id="@+id/btallapp"  android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="所有App"></Button>
+    <Button android:id="@+id/btsystemapp"  android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="系统App"></Button>
+	<Button android:id="@+id/btthirdapp"  android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="第三方App"></Button>
+	<Button android:id="@+id/btsdcardapp"  android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="sdcard中的App"></Button>
+</LinearLayout>

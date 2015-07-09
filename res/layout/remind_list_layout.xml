@@ -44,10 +44,10 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_toRightOf="@id/back_layout"
-            android:layout_toLeftOf="@id/ok_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_toLeftOf="@id/ok_layout"
+            android:layout_toRightOf="@id/back_layout"
             android:gravity="left|center_vertical"
             android:orientation="horizontal"
             android:padding="5dp" >
@@ -79,24 +79,27 @@
         </LinearLayout>
     </RelativeLayout>
     <!-- end 标题 -->
-	<RelativeLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="60dp">
-	    <TextView 
-	        android:id="@+id/go_app"
-	        android:layout_centerInParent="true"
-	        android:padding="10dp"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:background="@drawable/friend_bottom"
-	        android:text="进入应用"
-	        android:textColor="@color/color_3"
-	        android:textSize="26dp"/>
-	</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp" >
+
+        <TextView
+            android:id="@+id/go_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/friend_bottom"
+            android:padding="10dp"
+            android:text="进入应用"
+            android:textColor="@color/color_3"
+            android:textSize="26dp" />
+    </RelativeLayout>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/font2" />
+        android:background="@color/color_line" />
 
     <ListView
         android:id="@+id/listview"

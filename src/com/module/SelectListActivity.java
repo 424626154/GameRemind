@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -31,71 +32,56 @@ import com.qianghuai.gr.R;
  * @author g
  *
  */
-public class SelectListActivity extends BaseActivity{
+public class SelectListActivity extends BaseActivity implements OnClickListener{
 	public RelativeLayout back_layout = null;
+	public RelativeLayout ok_layout = null;
+	public ImageView back_iv = null;
+	public TextView back_tv = null;
+	public TextView ok_tv = null;
 	public TextView title = null;
-	public TextView check_all = null;
-	public Button del_but = null;
 	public ListView listView = null;
 	public DelRemindAdapter adapter = null;
-	public boolean b_check = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.del_remind_layout);
 		initView();
 	}
-	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.back_layout:
+			finish();
+			break;
+		case R.id.ok_layout:
+			for (Entry<Integer, Boolean> entry : adapter.map.entrySet()) {
+				  if( adapter.map.get(entry.getKey())){
+					  MyApplication.getInstance().dbHelper.insetOnAppInfo(((AppInfo)adapter.getItem(entry.getKey())));
+				  }
+			}
+			finish();
+			break;
+		default:
+			break;
+		}
+	}
 	public void initView(){
 		back_layout = (RelativeLayout)findViewById(R.id.back_layout);
+		ok_layout = (RelativeLayout)findViewById(R.id.ok_layout);
+		back_iv = (ImageView)findViewById(R.id.back_iv);
+		back_tv = (TextView)findViewById(R.id.back_tv);
+		ok_tv = (TextView)findViewById(R.id.ok_tv);
 		title = (TextView)findViewById(R.id.title);
-		back_layout.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-		title.setText("添加");
-		check_all = (TextView)findViewById(R.id.check_all);
-		del_but = (Button)findViewById(R.id.del_but);
-		del_but.setText("添加");
-		check_all.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				b_check = !b_check;
-				for (Entry<Integer, Boolean> entry : adapter.map.entrySet()) {
-					   adapter.map.put(entry.getKey(),b_check);
-				}
-				adapter.notifyDataSetChanged();
-				if(b_check){
-					Drawable drawable= getResources().getDrawable(R.drawable.btn_check2);  
-					/// 这一步必须要做,否则不会显示.  
-					drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());  
-					check_all.setCompoundDrawables(drawable, null, null, null);
-				}else{
-					Drawable drawable= getResources().getDrawable(R.drawable.btn_check1);  
-					/// 这一步必须要做,否则不会显示.  
-					drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());  
-					check_all.setCompoundDrawables(drawable, null, null, null);
-				}
-			}
-		});
-		del_but.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				for (Entry<Integer, Boolean> entry : adapter.map.entrySet()) {
-					  if( adapter.map.get(entry.getKey())){
-						  MyApplication.getInstance().dbHelper.insetOnAppInfo(((AppInfo)adapter.getItem(entry.getKey())));
-					  }
-				}
-				finish();
-			}
-		});
 		
+		title.setText("选择程序");
+		back_iv.setVisibility(View.GONE);
+		back_tv.setVisibility(View.VISIBLE);
+		ok_layout.setVisibility(View.VISIBLE);
+		ok_tv.setVisibility(View.VISIBLE);
+		
+		back_layout.setOnClickListener(this);
+		ok_layout.setOnClickListener(this);
+
 		listView = (ListView)findViewById(R.id.listview);
 		adapter = new DelRemindAdapter(this,getData()/*DataUtil.queryFilterAppInfo(this.getPackageManager(),DataUtil.FILTER_THIRD_APP)*/);
 		listView.setAdapter(adapter);
@@ -107,6 +93,17 @@ public class SelectListActivity extends BaseActivity{
 				// TODO Auto-generated method stub
 				adapter.map.put(position, !adapter.map.get(position));
 				adapter.notifyDataSetChanged();
+				int num = 0;
+				for (Entry<Integer, Boolean> entry : adapter.map.entrySet()) {
+					  if( adapter.map.get(entry.getKey())){
+						  num++;
+					  }
+				}
+				if(num > 0 ){
+					title.setText("选择程序("+num+"/"+adapter.mlistAppInfo.size()+")");
+				}else{
+					title.setText("选择程序");
+				}
 			}
 		});
 	}

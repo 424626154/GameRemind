@@ -10,10 +10,20 @@
         android:layout_height="match_parent" >
 
         <ImageView
+            android:id="@+id/back_iv"
             android:layout_width="18dp"
             android:layout_height="24dp"
             android:layout_centerInParent="true"
             android:background="@drawable/back" />
+        <TextView
+            android:id="@+id/back_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="返回"
+            android:textColor="@color/font1"
+            android:textSize="20dp"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <TextView

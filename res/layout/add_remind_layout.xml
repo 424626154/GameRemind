@@ -70,42 +70,6 @@
         android:background="#5f5f5f" />
 
     <RelativeLayout
-        android:id="@+id/repeat_layout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="5dp" >
-
-        <TextView
-            android:id="@+id/repeat_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="重复"
-            android:textColor="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/repeat_info_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/repeat_tv"
-            android:text="星期一星期一星期一星期一星期一"
-            android:textColor="#5f5f5f"
-            android:textSize="16dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/more1" />
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#5f5f5f" />
-
-    <RelativeLayout
         android:id="@+id/remarks_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -142,6 +106,42 @@
         android:background="#5f5f5f" />
 
     <RelativeLayout
+        android:id="@+id/repeat_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/repeat_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重复*"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/repeat_info_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/repeat_tv"
+            android:text="星期一星期一星期一星期一星期一"
+            android:textColor="#5f5f5f"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/more1" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#5f5f5f" />
+
+    <RelativeLayout
         android:id="@+id/alert_type_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
             android:id="@+id/alert_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="提醒类型"
+            android:text="提醒类型*"
             android:textColor="#000000"
             android:textSize="18dp" />
 
@@ -176,5 +176,17 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#5f5f5f" />
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:text="温馨提示,带*号未必选项"
+            android:textColor="@color/color_3"
+            android:textSize="14dp"/>
+    </RelativeLayout>
 
 </LinearLayout>

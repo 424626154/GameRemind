@@ -424,7 +424,7 @@ public class DBHelper {
 		return peoples ;	
 	}
 	
-	public long deleteOnAppInfo(Remind remind){
+	public long deleteOnRemindAppInfo(Remind remind){
 		long returns = -1;
 		try {
 			db.delete(DB_REMIN_ITEM_TABLE, _ID +" = ?", new String[]{remind._id+""}); 

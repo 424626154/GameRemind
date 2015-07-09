@@ -90,7 +90,7 @@ public class DelRemindItemActivity extends BaseActivity{
 				// TODO Auto-generated method stub
 				for (Entry<Integer, Boolean> entry : adapter.map.entrySet()) {
 					  if( adapter.map.get(entry.getKey())){
-						  MyApplication.getInstance().dbHelper.deleteOnAppInfo(((Remind)adapter.getItem(entry.getKey())));
+						  MyApplication.getInstance().dbHelper.deleteOnRemindAppInfo(((Remind)adapter.getItem(entry.getKey())));
 					  }
 				}
 				finish();

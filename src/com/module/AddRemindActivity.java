@@ -50,7 +50,6 @@ public class AddRemindActivity extends BaseActivity{
 	private TextView alert_type_info_tv = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_remind_layout);
 		initView();

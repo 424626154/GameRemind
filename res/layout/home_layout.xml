@@ -44,7 +44,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/btn_add" />
+                android:background="@drawable/add_icon" />
         </RelativeLayout>
        <RelativeLayout
             android:id="@+id/feedback_layout"

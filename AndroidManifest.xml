@@ -57,13 +57,16 @@
             android:name="com.module.HomeActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name="com.module.RemindAlert"
+            android:name="com.module.RemindAlertActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity android:name="com.module.CustomActivity"
             android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="com.module.AlertTypeActivity"
             android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity android:name="com.module.SeceletTableActivity"
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+        
         <!-- 友盟意见反馈 -->
         <activity
             android:name="com.module.ConversationDetailActivity"

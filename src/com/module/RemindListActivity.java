@@ -29,7 +29,6 @@ import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.base.BaseActivity;
-import com.data.AppInfo;
 import com.data.Remind;
 import com.qianghuai.gr.R;
 import com.widget.UISwitchButton;
@@ -172,6 +171,7 @@ public class RemindListActivity extends BaseActivity implements OnClickListener{
 				viewHolder.remarks = (TextView)convertView.findViewById(R.id.remarks);
 				viewHolder.switch_open_send = (UISwitchButton)convertView.findViewById(R.id.switch_open_send);
 				viewHolder.del_but = (Button)convertView.findViewById(R.id.del_but);
+				viewHolder.table_icon = (ImageView)convertView.findViewById(R.id.table_icon);
 				convertView.setTag(viewHolder);
 			}else{
 				viewHolder = (ViewHolder) convertView.getTag() ;
@@ -212,7 +212,7 @@ public class RemindListActivity extends BaseActivity implements OnClickListener{
 			}else{
 				viewHolder.switch_open_send.setChecked(true);
 			}
-			
+			viewHolder.table_icon.setBackgroundResource(getRes(remind.table));
 			if(state == 0){
 				viewHolder.del_left.setVisibility(View.GONE);
 				viewHolder.del_but.setVisibility(View.GONE);
@@ -264,6 +264,7 @@ public class RemindListActivity extends BaseActivity implements OnClickListener{
 			TextView remarks;
 			UISwitchButton switch_open_send;
 			Button del_but;
+			ImageView table_icon;
 		}
 	}
 	
@@ -319,5 +320,10 @@ public class RemindListActivity extends BaseActivity implements OnClickListener{
 		initPopWindow();
 		popupWindow.showAtLocation(findViewById(R.id.layout),Gravity.TOP | Gravity.LEFT,
 				0,0);
+	}
+	public int getRes(int index){
+		int res = 0;
+		res = R.drawable.logo_type0+index;
+		return res;
 	}
 }

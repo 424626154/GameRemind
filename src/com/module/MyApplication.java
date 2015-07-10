@@ -94,7 +94,7 @@ public class MyApplication extends Application{
         Context context = getApplicationContext();
         CharSequence contentTitle = remind.appLabel;
         CharSequence contentText = remind.remarks;
-        Intent notificationIntent = new Intent(this, RemindAlert.class);
+        Intent notificationIntent = new Intent(this, RemindAlertActivity.class);
         Bundle bundle = new Bundle(); 
         bundle.putLong("_id",remind._id); 
         bundle.putString("remarks",remind.remarks); 

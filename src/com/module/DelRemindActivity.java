@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import android.R.bool;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 
 import com.base.BaseActivity;
 import com.data.AppInfo;
-import com.data.DataUtil;
 import com.qianghuai.gr.R;
 
 /**

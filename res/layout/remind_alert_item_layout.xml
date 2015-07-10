@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_2"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/app_layout"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp" >
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="right|top"
+                    android:background="@drawable/logo_smali" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/appname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end" 
+                android:singleLine="true"
+                android:text="title"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/goapp_layout"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" >
+
+            <Button
+                android:id="@+id/goapp_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/friend_bottom"
+                android:text="进入应用"
+                android:textColor="@color/color_3"
+                android:textSize="14dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/goapp_layout"
+            android:layout_toRightOf="@id/app_layout"
+            android:gravity="left|center_vertical"
+            android:orientation="vertical" 
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <ImageView
+                    android:id="@+id/app_table"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/logo_type0" />
+
+                <TextView
+                    android:id="@+id/remarks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="备注"
+                    android:textColor="@color/color_3"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间 50:06"
+                android:textColor="@color/color_3"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line" />
+
+</LinearLayout>

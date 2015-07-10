@@ -129,6 +129,7 @@ public class DBHelper {
 	public static final String ON_OFF= "on_off";//0 关 1 开
 	public static final String VIB_ON_OFF = "vib_on_off";//震动 0 关 1 开
 	public static final String BELL_URL = "bell_url";
+	public static final String TABLE = "app_table";
 	public static final String CREATE_ITEM_REMIN = "CREATE TABLE IF NOT EXISTS "+DB_REMIN_ITEM_TABLE+"(" +
 			_ID+" INTEGER PRIMARY KEY AUTOINCREMENT ,"+
 			APP_LABEL+" text , "+
@@ -140,7 +141,8 @@ public class DBHelper {
 			WEEK_JSON+" text ,"+
 			ON_OFF+" INTEGER default 0 , "+
 			VIB_ON_OFF+" INTEGER default 0 , "+
-			BELL_URL+" text "+
+			BELL_URL+" text , "+
+			TABLE+" INTEGER default 0 "+
 			")";
 	public long insetRemind(Remind remind){
 		long returns = -1;
@@ -160,6 +162,7 @@ public class DBHelper {
 			newValues.put(ON_OFF,remind.on_off);
 			newValues.put(VIB_ON_OFF,remind.vibration_on_off);
 			newValues.put(BELL_URL,remind.bell_url);
+			newValues.put(TABLE,remind.table);
 			returns =  db.insert(DB_REMIN_ITEM_TABLE, _ID, newValues);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -378,7 +381,8 @@ public class DBHelper {
 					WEEK_JSON+" ,"+
 					ON_OFF+"  , "+
 					VIB_ON_OFF+" , "+
-					BELL_URL+
+					BELL_URL+" , "+
+					TABLE+
 					" from " + DB_REMIN_ITEM_TABLE + " where "+ _ID + " = ? ";
 			result = db.rawQuery(sql, new String[]{_id+""});
 			if(result == null)return null;
@@ -410,7 +414,7 @@ public class DBHelper {
 				peoples.on_off = result.getInt(result.getColumnIndex(ON_OFF));
 				peoples.vibration_on_off = result.getInt(result.getColumnIndex(VIB_ON_OFF));
 				peoples.bell_url = result.getString(result.getColumnIndex(BELL_URL));
-				
+				peoples.table = result.getInt(result.getColumnIndex(TABLE));
 				result.moveToNext();
 			}
 		}catch(Exception e){

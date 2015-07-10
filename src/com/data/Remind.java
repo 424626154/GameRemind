@@ -24,5 +24,7 @@ public class Remind implements Serializable{
 	public String bell_url = "";
 	
 	public MusicInfo musicInfo = null;
+	//±Í«©
+	public int table = 0;
 			
 }

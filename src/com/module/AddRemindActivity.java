@@ -44,6 +44,9 @@ public class AddRemindActivity extends BaseActivity{
 	private TextView repeat_info_tv ;
 	private int[] weeks = null;
 	
+	private RelativeLayout table_layout;
+	private ImageView table_icon;
+	
 	private RelativeLayout remarks_layout ;
 	private TextView remarks_info_tv;
 	private RelativeLayout alert_type_layout = null;
@@ -60,6 +63,8 @@ public class AddRemindActivity extends BaseActivity{
 		MyApplication.getInstance().myData.remind.appLabel = appLabel;
 		MyApplication.getInstance().myData.remind.pkgName = pkgName;
 		MyApplication.getInstance().myData.remind.appIcon = appIcon;
+		MyApplication.getInstance().myData.remind.hour = hour;
+		MyApplication.getInstance().myData.remind.minute = minute;
 	}
 	@Override
 	protected void onResume() {
@@ -91,6 +96,8 @@ public class AddRemindActivity extends BaseActivity{
 						alert = vibrationd+"+"+bell;
 					}
 			alert_type_info_tv.setText(alert);
+			
+			table_icon.setBackgroundResource(getRes(MyApplication.getInstance().myData.remind.table));
 		}
 
 	}
@@ -138,8 +145,6 @@ public class AddRemindActivity extends BaseActivity{
 		Calendar mCalendar = Calendar.getInstance();
     	hour = mCalendar.get(Calendar.HOUR_OF_DAY)+1;
 		minute = mCalendar.get(Calendar.MINUTE) + 1;
-		MyApplication.getInstance().myData.remind.hour = hour;
-		MyApplication.getInstance().myData.remind.minute = minute;
 		wv_hours = (WheelView)findViewById(R.id.hour);
 		wv_mins = (WheelView)findViewById(R.id.min);
 		wv_hours.setVisibility(View.VISIBLE);
@@ -176,12 +181,25 @@ public class AddRemindActivity extends BaseActivity{
 		repeat_info_tv = (TextView)findViewById(R.id.repeat_info_tv);
 		repeat_info_tv.setText("");
 		
+		
+		table_layout = (RelativeLayout)findViewById(R.id.table_layout);
+		table_icon = (ImageView)findViewById(R.id.table_icon);
+		table_layout.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(AddRemindActivity.this, SeceletTableActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		
 		remarks_layout = (RelativeLayout)findViewById(R.id.remarks_layout);
 		remarks_layout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(AddRemindActivity.this, RemarksActivity.class);
 				startActivity(intent);
@@ -210,6 +228,12 @@ public class AddRemindActivity extends BaseActivity{
 				startActivity(intent);				
 			}
 		});
+	}
+	
+	public int getRes(int index){
+		int res = 0;
+		res = R.drawable.logo_type0+index;
+		return res;
 	}
 	
 	OnWheelScrollListener onWheelScrollListener = new OnWheelScrollListener() {

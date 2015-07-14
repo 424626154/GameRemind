@@ -2,13 +2,11 @@ package com.module;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Audio.Media;
 import android.text.TextUtils;
@@ -22,10 +20,19 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.base.BaseActivity;
 import com.qianghuai.gr.R;
 import com.widget.UISwitchButton;
-
+/**
+ * 提醒类型
+ * @author g
+ *
+ */
 public class AlertTypeActivity extends BaseActivity implements OnClickListener{
 	private RelativeLayout back_layout = null;
 	private TextView title = null;
+	//手机通知示例
+	private TextView notice_demo_tv = null;
+	//手机通知开关
+	private UISwitchButton notice_open_send = null;
+	
 	//选择铃声
 	private RelativeLayout bell_layout = null;
 	//铃声信息
@@ -48,6 +55,14 @@ public class AlertTypeActivity extends BaseActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.back_layout:
 			finish();
+			break;
+		case R.id.notice_demo_tv:
+			Intent intent = new Intent();
+			Bundle bundle = new Bundle(); 
+	        bundle.putLong("_id",0); 
+	        intent.putExtras(bundle);
+			intent.setClass(this, RemindAlertActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.bell_layout:
 			doPickAlarmRingtone();
@@ -83,6 +98,9 @@ public class AlertTypeActivity extends BaseActivity implements OnClickListener{
 	public void initView(){
 		back_layout = (RelativeLayout)findViewById(R.id.back_layout);
 		title = (TextView)findViewById(R.id.title);
+		notice_demo_tv = (TextView)findViewById(R.id.notice_demo_tv);
+		notice_demo_tv.setOnClickListener(this);
+		notice_open_send = (UISwitchButton)findViewById(R.id.notice_open_send);
 		bell_layout = (RelativeLayout)findViewById(R.id.bell_layout);
 		bell_info_tv = (TextView)findViewById(R.id.bell_info_tv);
 		vibration_open_send = (UISwitchButton)findViewById(R.id.vibration_open_send);
@@ -90,6 +108,13 @@ public class AlertTypeActivity extends BaseActivity implements OnClickListener{
 		back_layout.setOnClickListener(this);
 		bell_layout.setOnClickListener(this);
 		MyApplication.getInstance().myData.remind.vibration_on_off = 1;
+		notice_open_send.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+			}
+		});
 		vibration_open_send.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override

@@ -5,5 +5,5 @@
         <attr name="bmWidth" format="dimension"></attr>
         <attr name="bmHeight" format="dimension"></attr>
     </declare-styleable>
-
+	
 </resources>

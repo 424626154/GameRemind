@@ -19,6 +19,16 @@ public final class R {
         public static final int umeng_fb_tabs_title=0x7f0a0002;
     }
     public static final class attr {
+        /**  Sets how long a transition animation should run (in milliseconds)
+             when layout has changed.  Only relevant if animation is turned on. 
+         <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int animationDuration=0x7f010005;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -39,6 +49,64 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int bmWidth=0x7f010000;
+        /**  Reference to an array resource that will populate a list/adapter. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int entries=0x7f010002;
+        /**  Default Gallery style. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int galleryStyle=0x7f010004;
+        /**  Specifies how to place the content of an object, both
+         on the x- and y-axis, within the object itself. 
+         <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>top</code></td><td>0x30</td><td> Push object to the top of its container, not changing its size. </td></tr>
+<tr><td><code>bottom</code></td><td>0x50</td><td> Push object to the bottom of its container, not changing its size. </td></tr>
+<tr><td><code>left</code></td><td>0x03</td><td> Push object to the left of its container, not changing its size. </td></tr>
+<tr><td><code>right</code></td><td>0x05</td><td> Push object to the right of its container, not changing its size. </td></tr>
+<tr><td><code>center_vertical</code></td><td>0x10</td><td> Place object in the vertical center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_vertical</code></td><td>0x70</td><td> Grow the vertical size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>center_horizontal</code></td><td>0x01</td><td> Place object in the horizontal center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_horizontal</code></td><td>0x07</td><td> Grow the horizontal size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>center</code></td><td>0x11</td><td> Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. </td></tr>
+<tr><td><code>fill</code></td><td>0x77</td><td> Grow the horizontal and vertical size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>clip_vertical</code></td><td>0x80</td><td> Additional option that can be set to have the top and/or bottom edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the vertical gravity: a top gravity will clip the bottom
+             edge, a bottom gravity will clip the top edge, and neither will clip both edges. </td></tr>
+<tr><td><code>clip_horizontal</code></td><td>0x08</td><td> Additional option that can be set to have the left and/or right edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the horizontal gravity: a left gravity will clip the right
+             edge, a right gravity will clip the left edge, and neither will clip both edges. </td></tr>
+</table>
+         */
+        public static final int gravity=0x7f010003;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int spacing=0x7f010006;
+        /**  Sets the alpha on the items that are not selected. 
+         <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int unselectedAlpha=0x7f010007;
     }
     public static final class color {
         public static final int color_1=0x7f060003;
@@ -183,155 +251,173 @@ containing a value of this type.
         public static final int wheel_val=0x7f02006e;
     }
     public static final class id {
-        public static final int adLayout=0x7f0b0039;
-        public static final int ad_image=0x7f0b005c;
-        public static final int add=0x7f0b004f;
-        public static final int add_layout=0x7f0b0036;
-        public static final int alert_type_info_tv=0x7f0b0016;
-        public static final int alert_type_layout=0x7f0b0014;
-        public static final int alert_type_tv=0x7f0b0015;
-        public static final int app_layout=0x7f0b0052;
-        public static final int app_table=0x7f0b0055;
-        public static final int appname=0x7f0b0008;
-        public static final int back_iv=0x7f0b0041;
-        public static final int back_layout=0x7f0b0040;
-        public static final int back_tv=0x7f0b0042;
-        public static final int bell_info_tv=0x7f0b0019;
-        public static final int bell_layout=0x7f0b0017;
-        public static final int bell_tv=0x7f0b0018;
-        public static final int btallapp=0x7f0b0048;
-        public static final int btsdcardapp=0x7f0b004b;
-        public static final int btsystemapp=0x7f0b0049;
-        public static final int btthirdapp=0x7f0b004a;
-        public static final int buttom_layout=0x7f0b0038;
-        public static final int check_all=0x7f0b0023;
-        public static final int container=0x7f0b0006;
-        public static final int cover=0x7f0b002a;
-        public static final int del=0x7f0b0050;
-        public static final int del_but=0x7f0b0024;
-        public static final int del_left=0x7f0b003b;
-        public static final int edit_text=0x7f0b0051;
-        public static final int editor_layout=0x7f0b0034;
-        public static final int editor_tv=0x7f0b0035;
-        public static final int fb_input_layout=0x7f0b0000;
-        public static final int fb_reply_item=0x7f0b0026;
-        public static final int fb_reply_item_view_line=0x7f0b0081;
-        public static final int fb_reply_item_view_tag=0x7f0b0080;
-        public static final int fb_reply_list=0x7f0b0004;
-        public static final int fb_reply_refresh=0x7f0b0003;
-        public static final int fb_send_btn=0x7f0b0001;
-        public static final int fb_send_content=0x7f0b0002;
-        public static final int feedback=0x7f0b004d;
-        public static final int feedback_layout=0x7f0b0037;
-        public static final int fl_iv=0x7f0b0045;
-        public static final int go_app=0x7f0b0058;
-        public static final int goapp_btn=0x7f0b0054;
-        public static final int goapp_layout=0x7f0b0053;
-        public static final int gridview=0x7f0b005b;
-        public static final int home_list_footer=0x7f0b003a;
-        public static final int hour=0x7f0b0009;
-        public static final int icon=0x7f0b0007;
-        public static final int icon_layout=0x7f0b003f;
-        public static final int item_list=0x7f0b0005;
-        public static final int iv_head_layout=0x7f0b0028;
-        public static final int iv_jiantou=0x7f0b002e;
-        public static final int iv_subscripts=0x7f0b002c;
-        public static final int iv_syshead=0x7f0b002b;
-        public static final int iv_userhead=0x7f0b0029;
-        public static final int layout=0x7f0b0033;
-        public static final int listview=0x7f0b0025;
-        public static final int loading=0x7f0b0060;
-        public static final int min=0x7f0b000a;
-        public static final int num=0x7f0b003e;
-        public static final int ok_layout=0x7f0b0044;
-        public static final int ok_tv=0x7f0b0046;
-        public static final int pop_layout=0x7f0b004c;
-        public static final int processBar=0x7f0b0031;
-        public static final int progress_frame=0x7f0b005e;
-        public static final int promoter_frame=0x7f0b005d;
-        public static final int quan1=0x7f0b0059;
-        public static final int remarks=0x7f0b001f;
-        public static final int remarks_info_tv=0x7f0b0010;
-        public static final int remarks_layout=0x7f0b000e;
-        public static final int remarks_tv=0x7f0b000f;
-        public static final int repeat=0x7f0b0056;
-        public static final int repeat_info_tv=0x7f0b0013;
-        public static final int repeat_layout=0x7f0b0011;
-        public static final int repeat_tv=0x7f0b0012;
-        public static final int right_layout=0x7f0b003c;
-        public static final int rl_chatcontent=0x7f0b0030;
-        public static final int select=0x7f0b001d;
-        public static final int select_iv=0x7f0b005a;
-        public static final int select_layout=0x7f0b0022;
-        public static final int sendfailed=0x7f0b0032;
-        public static final int setting_layout=0x7f0b003d;
-        public static final int sign_out=0x7f0b004e;
-        public static final int status_msg=0x7f0b005f;
-        public static final int switch_open_send=0x7f0b0057;
-        public static final int table_icon=0x7f0b000d;
-        public static final int table_layout=0x7f0b000b;
-        public static final int table_tv=0x7f0b000c;
-        public static final int time=0x7f0b001e;
-        public static final int title=0x7f0b0043;
-        public static final int title_layout=0x7f0b0021;
-        public static final int top_layout=0x7f0b0020;
-        public static final int tv_chatcontent=0x7f0b002d;
-        public static final int tv_sendtime=0x7f0b0027;
-        public static final int tv_time=0x7f0b002f;
-        public static final int umeng_common_icon_view=0x7f0b0061;
-        public static final int umeng_common_notification=0x7f0b0065;
-        public static final int umeng_common_notification_controller=0x7f0b0062;
-        public static final int umeng_common_progress_bar=0x7f0b0068;
-        public static final int umeng_common_progress_text=0x7f0b0067;
-        public static final int umeng_common_rich_notification_cancel=0x7f0b0064;
-        public static final int umeng_common_rich_notification_continue=0x7f0b0063;
-        public static final int umeng_common_title=0x7f0b0066;
-        public static final int umeng_fb_action_collapse=0x7f0b0071;
-        public static final int umeng_fb_audio_dialog_count_down_tag_tv=0x7f0b006f;
-        public static final int umeng_fb_audio_dialog_count_down_tv=0x7f0b006d;
-        public static final int umeng_fb_audio_dialog_count_tv=0x7f0b006e;
-        public static final int umeng_fb_audio_dialog_layout=0x7f0b006c;
-        public static final int umeng_fb_contact_spinner=0x7f0b007b;
-        public static final int umeng_fb_contact_title=0x7f0b0070;
-        public static final int umeng_fb_container=0x7f0b0069;
-        public static final int umeng_fb_help_pager=0x7f0b006b;
-        public static final int umeng_fb_help_tabs=0x7f0b006a;
-        public static final int umeng_fb_image_detail_imageview=0x7f0b0077;
-        public static final int umeng_fb_input_layout=0x7f0b0078;
-        public static final int umeng_fb_keyboard_tag_btn=0x7f0b0082;
-        public static final int umeng_fb_plus_btn=0x7f0b007f;
-        public static final int umeng_fb_question=0x7f0b0076;
-        public static final int umeng_fb_record_btn=0x7f0b0083;
-        public static final int umeng_fb_record_tag_btn=0x7f0b007e;
-        public static final int umeng_fb_reply_audio_duration=0x7f0b0087;
-        public static final int umeng_fb_reply_audio_layout=0x7f0b0085;
-        public static final int umeng_fb_reply_audio_play_anim=0x7f0b0086;
-        public static final int umeng_fb_reply_content=0x7f0b008a;
-        public static final int umeng_fb_reply_content_layout=0x7f0b0084;
-        public static final int umeng_fb_reply_date=0x7f0b0088;
-        public static final int umeng_fb_reply_image=0x7f0b008b;
-        public static final int umeng_fb_reply_item_view_line=0x7f0b007a;
-        public static final int umeng_fb_reply_item_view_tag=0x7f0b0079;
-        public static final int umeng_fb_reply_list=0x7f0b0075;
-        public static final int umeng_fb_resend=0x7f0b0089;
-        public static final int umeng_fb_send_btn=0x7f0b007c;
-        public static final int umeng_fb_send_content=0x7f0b007d;
-        public static final int umeng_fb_send_layout=0x7f0b0073;
-        public static final int umeng_fb_spinnerTarget=0x7f0b0072;
-        public static final int umeng_fb_swipe_container=0x7f0b0074;
-        public static final int umeng_fb_welcome_info=0x7f0b008c;
-        public static final int umeng_update_content=0x7f0b0090;
-        public static final int umeng_update_frame=0x7f0b008d;
-        public static final int umeng_update_id_cancel=0x7f0b0093;
-        public static final int umeng_update_id_check=0x7f0b0091;
-        public static final int umeng_update_id_close=0x7f0b008f;
-        public static final int umeng_update_id_ignore=0x7f0b0094;
-        public static final int umeng_update_id_ok=0x7f0b0092;
-        public static final int umeng_update_wifi_indicator=0x7f0b008e;
-        public static final int version_info=0x7f0b0047;
-        public static final int vibration_layout=0x7f0b001a;
-        public static final int vibration_open_send=0x7f0b001c;
-        public static final int vibration_tv=0x7f0b001b;
+        public static final int adLayout=0x7f0b0049;
+        public static final int ad_image=0x7f0b006e;
+        public static final int add=0x7f0b005f;
+        public static final int add_layout=0x7f0b0046;
+        public static final int alert_type_info_tv=0x7f0b0022;
+        public static final int alert_type_layout=0x7f0b0020;
+        public static final int alert_type_tv=0x7f0b0021;
+        public static final int app_layout=0x7f0b0062;
+        public static final int app_table=0x7f0b0065;
+        public static final int appname=0x7f0b0014;
+        public static final int back_iv=0x7f0b0051;
+        public static final int back_layout=0x7f0b0050;
+        public static final int back_tv=0x7f0b0052;
+        public static final int bell_info_tv=0x7f0b0029;
+        public static final int bell_layout=0x7f0b0027;
+        public static final int bell_tv=0x7f0b0028;
+        public static final int bottom=0x7f0b0000;
+        public static final int btallapp=0x7f0b0058;
+        public static final int btsdcardapp=0x7f0b005b;
+        public static final int btsystemapp=0x7f0b0059;
+        public static final int btthirdapp=0x7f0b005a;
+        public static final int buttom_layout=0x7f0b0048;
+        public static final int center=0x7f0b0001;
+        public static final int center_horizontal=0x7f0b0002;
+        public static final int center_vertical=0x7f0b0003;
+        public static final int check_all=0x7f0b0033;
+        public static final int clip_horizontal=0x7f0b0004;
+        public static final int clip_vertical=0x7f0b0005;
+        public static final int container=0x7f0b0012;
+        public static final int cover=0x7f0b003a;
+        public static final int del=0x7f0b0060;
+        public static final int del_but=0x7f0b0034;
+        public static final int del_left=0x7f0b004b;
+        public static final int edit_text=0x7f0b0061;
+        public static final int editor_layout=0x7f0b0044;
+        public static final int editor_tv=0x7f0b0045;
+        public static final int fb_input_layout=0x7f0b000c;
+        public static final int fb_reply_item=0x7f0b0036;
+        public static final int fb_reply_item_view_line=0x7f0b0093;
+        public static final int fb_reply_item_view_tag=0x7f0b0092;
+        public static final int fb_reply_list=0x7f0b0010;
+        public static final int fb_reply_refresh=0x7f0b000f;
+        public static final int fb_send_btn=0x7f0b000d;
+        public static final int fb_send_content=0x7f0b000e;
+        public static final int feedback=0x7f0b005d;
+        public static final int feedback_layout=0x7f0b0047;
+        public static final int fill=0x7f0b0006;
+        public static final int fill_horizontal=0x7f0b0007;
+        public static final int fill_vertical=0x7f0b0008;
+        public static final int fl_iv=0x7f0b0055;
+        public static final int go_app=0x7f0b0068;
+        public static final int goapp_btn=0x7f0b0064;
+        public static final int goapp_layout=0x7f0b0063;
+        public static final int gridview=0x7f0b006d;
+        public static final int home_list_footer=0x7f0b004a;
+        public static final int hour=0x7f0b0015;
+        public static final int icon=0x7f0b0013;
+        public static final int icon_layout=0x7f0b004f;
+        public static final int item_list=0x7f0b0011;
+        public static final int iv_head_layout=0x7f0b0038;
+        public static final int iv_jiantou=0x7f0b003e;
+        public static final int iv_subscripts=0x7f0b003c;
+        public static final int iv_syshead=0x7f0b003b;
+        public static final int iv_userhead=0x7f0b0039;
+        public static final int layout=0x7f0b0043;
+        public static final int left=0x7f0b0009;
+        public static final int listview=0x7f0b0035;
+        public static final int loading=0x7f0b0072;
+        public static final int min=0x7f0b0016;
+        public static final int notice_demo_tv=0x7f0b0025;
+        public static final int notice_layout=0x7f0b0023;
+        public static final int notice_open_send=0x7f0b0026;
+        public static final int notice_tv=0x7f0b0024;
+        public static final int num=0x7f0b004e;
+        public static final int ok_layout=0x7f0b0054;
+        public static final int ok_tv=0x7f0b0056;
+        public static final int pop_layout=0x7f0b005c;
+        public static final int processBar=0x7f0b0041;
+        public static final int progress_frame=0x7f0b0070;
+        public static final int promoter_frame=0x7f0b006f;
+        public static final int quan1=0x7f0b0069;
+        public static final int remarks=0x7f0b002f;
+        public static final int remarks_info_tv=0x7f0b001c;
+        public static final int remarks_layout=0x7f0b001a;
+        public static final int remarks_tv=0x7f0b001b;
+        public static final int repeat=0x7f0b0066;
+        public static final int repeat_info_tv=0x7f0b001f;
+        public static final int repeat_layout=0x7f0b001d;
+        public static final int repeat_tv=0x7f0b001e;
+        public static final int right=0x7f0b000a;
+        public static final int right_layout=0x7f0b004c;
+        public static final int rl_chatcontent=0x7f0b0040;
+        public static final int select=0x7f0b002d;
+        public static final int select_iv=0x7f0b006c;
+        public static final int select_layout=0x7f0b0032;
+        public static final int sendfailed=0x7f0b0042;
+        public static final int setting_layout=0x7f0b004d;
+        public static final int sign_out=0x7f0b005e;
+        public static final int status_msg=0x7f0b0071;
+        public static final int switch_open_send=0x7f0b0067;
+        public static final int table_icon=0x7f0b0019;
+        public static final int table_layout=0x7f0b0017;
+        public static final int table_tv=0x7f0b0018;
+        public static final int time=0x7f0b002e;
+        public static final int title=0x7f0b0053;
+        public static final int title_layout=0x7f0b0031;
+        public static final int top=0x7f0b000b;
+        public static final int top_layout=0x7f0b0030;
+        public static final int tv_chatcontent=0x7f0b003d;
+        public static final int tv_sendtime=0x7f0b0037;
+        public static final int tv_time=0x7f0b003f;
+        public static final int umeng_common_icon_view=0x7f0b0073;
+        public static final int umeng_common_notification=0x7f0b0077;
+        public static final int umeng_common_notification_controller=0x7f0b0074;
+        public static final int umeng_common_progress_bar=0x7f0b007a;
+        public static final int umeng_common_progress_text=0x7f0b0079;
+        public static final int umeng_common_rich_notification_cancel=0x7f0b0076;
+        public static final int umeng_common_rich_notification_continue=0x7f0b0075;
+        public static final int umeng_common_title=0x7f0b0078;
+        public static final int umeng_fb_action_collapse=0x7f0b0083;
+        public static final int umeng_fb_audio_dialog_count_down_tag_tv=0x7f0b0081;
+        public static final int umeng_fb_audio_dialog_count_down_tv=0x7f0b007f;
+        public static final int umeng_fb_audio_dialog_count_tv=0x7f0b0080;
+        public static final int umeng_fb_audio_dialog_layout=0x7f0b007e;
+        public static final int umeng_fb_contact_spinner=0x7f0b008d;
+        public static final int umeng_fb_contact_title=0x7f0b0082;
+        public static final int umeng_fb_container=0x7f0b007b;
+        public static final int umeng_fb_help_pager=0x7f0b007d;
+        public static final int umeng_fb_help_tabs=0x7f0b007c;
+        public static final int umeng_fb_image_detail_imageview=0x7f0b0089;
+        public static final int umeng_fb_input_layout=0x7f0b008a;
+        public static final int umeng_fb_keyboard_tag_btn=0x7f0b0094;
+        public static final int umeng_fb_plus_btn=0x7f0b0091;
+        public static final int umeng_fb_question=0x7f0b0088;
+        public static final int umeng_fb_record_btn=0x7f0b0095;
+        public static final int umeng_fb_record_tag_btn=0x7f0b0090;
+        public static final int umeng_fb_reply_audio_duration=0x7f0b0099;
+        public static final int umeng_fb_reply_audio_layout=0x7f0b0097;
+        public static final int umeng_fb_reply_audio_play_anim=0x7f0b0098;
+        public static final int umeng_fb_reply_content=0x7f0b009c;
+        public static final int umeng_fb_reply_content_layout=0x7f0b0096;
+        public static final int umeng_fb_reply_date=0x7f0b009a;
+        public static final int umeng_fb_reply_image=0x7f0b009d;
+        public static final int umeng_fb_reply_item_view_line=0x7f0b008c;
+        public static final int umeng_fb_reply_item_view_tag=0x7f0b008b;
+        public static final int umeng_fb_reply_list=0x7f0b0087;
+        public static final int umeng_fb_resend=0x7f0b009b;
+        public static final int umeng_fb_send_btn=0x7f0b008e;
+        public static final int umeng_fb_send_content=0x7f0b008f;
+        public static final int umeng_fb_send_layout=0x7f0b0085;
+        public static final int umeng_fb_spinnerTarget=0x7f0b0084;
+        public static final int umeng_fb_swipe_container=0x7f0b0086;
+        public static final int umeng_fb_welcome_info=0x7f0b009e;
+        public static final int umeng_update_content=0x7f0b00a2;
+        public static final int umeng_update_frame=0x7f0b009f;
+        public static final int umeng_update_id_cancel=0x7f0b00a5;
+        public static final int umeng_update_id_check=0x7f0b00a3;
+        public static final int umeng_update_id_close=0x7f0b00a1;
+        public static final int umeng_update_id_ignore=0x7f0b00a6;
+        public static final int umeng_update_id_ok=0x7f0b00a4;
+        public static final int umeng_update_wifi_indicator=0x7f0b00a0;
+        public static final int version_info=0x7f0b0057;
+        public static final int vibration_layout=0x7f0b002a;
+        public static final int vibration_open_send=0x7f0b002c;
+        public static final int vibration_tv=0x7f0b002b;
+        public static final int wheel0=0x7f0b006a;
+        public static final int wheel1=0x7f0b006b;
     }
     public static final class layout {
         public static final int activity_custom=0x7f030000;
@@ -493,6 +579,137 @@ containing a value of this type.
         public static final int umeng_fb_speech_dialog_style=0x7f090002;
     }
     public static final class styleable {
+        /** Attributes that can be used with a AbsSpinner.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #AbsSpinner_entries com.qianghuai.gr:entries}</code></td><td> Reference to an array resource that will populate a list/adapter.</td></tr>
+           </table>
+           @see #AbsSpinner_entries
+         */
+        public static final int[] AbsSpinner = {
+            0x7f010002
+        };
+        /**
+          <p>
+          @attr description
+           Reference to an array resource that will populate a list/adapter. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name com.qianghuai.gr:entries
+        */
+        public static final int AbsSpinner_entries = 0;
+        /** Attributes that can be used with a Gallery.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #Gallery_animationDuration com.qianghuai.gr:animationDuration}</code></td><td> Sets how long a transition animation should run (in milliseconds)
+             when layout has changed.</td></tr>
+           <tr><td><code>{@link #Gallery_gravity com.qianghuai.gr:gravity}</code></td><td> Specifies how to place the content of an object, both
+         on the x- and y-axis, within the object itself.</td></tr>
+           <tr><td><code>{@link #Gallery_spacing com.qianghuai.gr:spacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #Gallery_unselectedAlpha com.qianghuai.gr:unselectedAlpha}</code></td><td> Sets the alpha on the items that are not selected.</td></tr>
+           </table>
+           @see #Gallery_animationDuration
+           @see #Gallery_gravity
+           @see #Gallery_spacing
+           @see #Gallery_unselectedAlpha
+         */
+        public static final int[] Gallery = {
+            0x7f010003, 0x7f010005, 0x7f010006, 0x7f010007
+        };
+        /**
+          <p>
+          @attr description
+           Sets how long a transition animation should run (in milliseconds)
+             when layout has changed.  Only relevant if animation is turned on. 
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.qianghuai.gr:animationDuration
+        */
+        public static final int Gallery_animationDuration = 1;
+        /**
+          <p>
+          @attr description
+           Specifies how to place the content of an object, both
+         on the x- and y-axis, within the object itself. 
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>top</code></td><td>0x30</td><td> Push object to the top of its container, not changing its size. </td></tr>
+<tr><td><code>bottom</code></td><td>0x50</td><td> Push object to the bottom of its container, not changing its size. </td></tr>
+<tr><td><code>left</code></td><td>0x03</td><td> Push object to the left of its container, not changing its size. </td></tr>
+<tr><td><code>right</code></td><td>0x05</td><td> Push object to the right of its container, not changing its size. </td></tr>
+<tr><td><code>center_vertical</code></td><td>0x10</td><td> Place object in the vertical center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_vertical</code></td><td>0x70</td><td> Grow the vertical size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>center_horizontal</code></td><td>0x01</td><td> Place object in the horizontal center of its container, not changing its size. </td></tr>
+<tr><td><code>fill_horizontal</code></td><td>0x07</td><td> Grow the horizontal size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>center</code></td><td>0x11</td><td> Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. </td></tr>
+<tr><td><code>fill</code></td><td>0x77</td><td> Grow the horizontal and vertical size of the object if needed so it completely fills its container. </td></tr>
+<tr><td><code>clip_vertical</code></td><td>0x80</td><td> Additional option that can be set to have the top and/or bottom edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the vertical gravity: a top gravity will clip the bottom
+             edge, a bottom gravity will clip the top edge, and neither will clip both edges. </td></tr>
+<tr><td><code>clip_horizontal</code></td><td>0x08</td><td> Additional option that can be set to have the left and/or right edges of
+             the child clipped to its container's bounds.
+             The clip will be based on the horizontal gravity: a left gravity will clip the right
+             edge, a right gravity will clip the left edge, and neither will clip both edges. </td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name com.qianghuai.gr:gravity
+        */
+        public static final int Gallery_gravity = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.qianghuai.gr.R.attr#spacing}
+          attribute's value can be found in the {@link #Gallery} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.qianghuai.gr:spacing
+        */
+        public static final int Gallery_spacing = 2;
+        /**
+          <p>
+          @attr description
+           Sets the alpha on the items that are not selected. 
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.qianghuai.gr:unselectedAlpha
+        */
+        public static final int Gallery_unselectedAlpha = 3;
         /** Attributes that can be used with a SwitchButton.
            <p>Includes the following attributes:</p>
            <table>

@@ -125,11 +125,12 @@ public class DBHelper {
 	public static final String HOUR = "hour";
 	public static final String MINUTE = "minute";
 	public static final String REMARKS = "remarks";
-	public static final String WEEK_JSON = "week_json";
 	public static final String ON_OFF= "on_off";//0 关 1 开
 	public static final String VIB_ON_OFF = "vib_on_off";//震动 0 关 1 开
 	public static final String BELL_URL = "bell_url";
 	public static final String TABLE = "app_table";
+	public static final String TIME_TYPE = "time_type";//重复类型
+	public static final String TIME_INDEX ="time_index";//重复索引
 	public static final String CREATE_ITEM_REMIN = "CREATE TABLE IF NOT EXISTS "+DB_REMIN_ITEM_TABLE+"(" +
 			_ID+" INTEGER PRIMARY KEY AUTOINCREMENT ,"+
 			APP_LABEL+" text , "+
@@ -138,11 +139,12 @@ public class DBHelper {
 			HOUR+" INTEGER ,"+
 			MINUTE+" INTEGER ,"+
 			REMARKS+" text ,"+
-			WEEK_JSON+" text ,"+
 			ON_OFF+" INTEGER default 0 , "+
 			VIB_ON_OFF+" INTEGER default 0 , "+
 			BELL_URL+" text , "+
-			TABLE+" INTEGER default 0 "+
+			TABLE+" INTEGER default 0 , "+
+			TIME_TYPE+" INTEGER default 0 , "+
+			TIME_INDEX+" INTEGER default 0 "+
 			")";
 	public long insetRemind(Remind remind){
 		long returns = -1;
@@ -158,11 +160,12 @@ public class DBHelper {
 			newValues.put(HOUR,remind.hour);
 			newValues.put(MINUTE,remind.minute);
 			newValues.put(REMARKS,remind.remarks);
-			newValues.put(WEEK_JSON,remind.week_json);
 			newValues.put(ON_OFF,remind.on_off);
 			newValues.put(VIB_ON_OFF,remind.vibration_on_off);
 			newValues.put(BELL_URL,remind.bell_url);
 			newValues.put(TABLE,remind.table);
+			newValues.put(TIME_TYPE,remind.time_type);
+			newValues.put(TIME_INDEX,remind.time_index);
 			returns =  db.insert(DB_REMIN_ITEM_TABLE, _ID, newValues);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,10 +196,11 @@ public class DBHelper {
 					HOUR+" ,"+
 					MINUTE+" ,"+
 					REMARKS+" ,"+
-					WEEK_JSON+" , "+
 					ON_OFF+" , "+
 					VIB_ON_OFF+" , "+
-					BELL_URL+
+					BELL_URL+" , "+
+					TIME_TYPE+" , "+
+					TIME_INDEX+
 					" from " + DB_REMIN_ITEM_TABLE;
 			result = db.rawQuery(sql, null);
 			if(result == null)return null;
@@ -218,17 +222,11 @@ public class DBHelper {
 				peoples[i].hour = result.getInt(result.getColumnIndex(HOUR));
 				peoples[i].minute = result.getInt(result.getColumnIndex(MINUTE));
 				peoples[i].remarks = result.getString(result.getColumnIndex(REMARKS));
-				peoples[i].week_json = result.getString(result.getColumnIndex(WEEK_JSON));
-				JSONArray jsonArray = new JSONArray(peoples[i].week_json);
-				if (jsonArray != null) { 
-					peoples[i].b_week = new boolean[jsonArray.length()];
-					   for (int j = 0; j < jsonArray.length();j++){ 
-						   peoples[i].b_week[j] = (Boolean) jsonArray.get(i);
-					   } 
-					} 
 				peoples[i].on_off = result.getInt(result.getColumnIndex(ON_OFF));
 				peoples[i].vibration_on_off = result.getInt(result.getColumnIndex(VIB_ON_OFF));
 				peoples[i].bell_url = result.getString(result.getColumnIndex(BELL_URL));
+				peoples[i].time_type = result.getInt(result.getColumnIndex(TIME_TYPE));
+				peoples[i].time_index = result.getInt(result.getColumnIndex(TIME_INDEX));
 				result.moveToNext();
 			}
 		}catch(Exception e){
@@ -254,10 +252,11 @@ public class DBHelper {
 					HOUR+" ,"+
 					MINUTE+" ,"+
 					REMARKS+" ,"+
-					WEEK_JSON+" , "+
 					ON_OFF+"  , "+
 					VIB_ON_OFF+" , "+
-					BELL_URL+
+					BELL_URL+" , "+
+					TIME_TYPE+" , "+
+					TIME_INDEX+
 					" from " + DB_REMIN_ITEM_TABLE + " where "+ HOUR + " = ? and "+MINUTE + " = ? ";
 			result = db.rawQuery(sql, new String[]{hour,minute});
 			if(result == null)return null;
@@ -279,18 +278,12 @@ public class DBHelper {
 				peoples[i].hour = result.getInt(result.getColumnIndex(HOUR));
 				peoples[i].minute = result.getInt(result.getColumnIndex(MINUTE));
 				peoples[i].remarks = result.getString(result.getColumnIndex(REMARKS));
-				peoples[i].week_json = result.getString(result.getColumnIndex(WEEK_JSON));
-				JSONArray jsonArray = new JSONArray(peoples[i].week_json);
-				if (jsonArray != null) { 
-					peoples[i].b_week = new boolean[jsonArray.length()];
-					   for (int j = 0; j < jsonArray.length();j++){ 
-						   peoples[i].b_week[j] = (Boolean) jsonArray.get(i);
-					   } 
-					} 
 				peoples[i].on_off = result.getInt(result.getColumnIndex(ON_OFF));
 				peoples[i].vibration_on_off = result.getInt(result.getColumnIndex(VIB_ON_OFF));
 				peoples[i].bell_url = result.getString(result.getColumnIndex(BELL_URL));
-				
+				peoples[i].time_type = result.getInt(result.getColumnIndex(TIME_TYPE));
+				peoples[i].time_index = result.getInt(result.getColumnIndex(TIME_INDEX));
+
 				result.moveToNext();
 			}
 		}catch(Exception e){
@@ -316,10 +309,11 @@ public class DBHelper {
 					HOUR+" ,"+
 					MINUTE+" ,"+
 					REMARKS+" ,"+
-					WEEK_JSON+" ,"+
 					ON_OFF+"  , "+
 					VIB_ON_OFF+" , "+
-					BELL_URL+
+					BELL_URL+" , "+
+					TIME_TYPE+" , "+
+					TIME_INDEX+
 					" from " + DB_REMIN_ITEM_TABLE + " where "+ PKG_NAME + " = ? ";
 			result = db.rawQuery(sql, new String[]{pkg_name});
 			if(result == null)return null;
@@ -341,18 +335,11 @@ public class DBHelper {
 				peoples[i].hour = result.getInt(result.getColumnIndex(HOUR));
 				peoples[i].minute = result.getInt(result.getColumnIndex(MINUTE));
 				peoples[i].remarks = result.getString(result.getColumnIndex(REMARKS));
-				peoples[i].week_json = result.getString(result.getColumnIndex(WEEK_JSON));
-				JSONArray jsonArray = new JSONArray(peoples[i].week_json);
-				if (jsonArray != null) { 
-					peoples[i].b_week = new boolean[jsonArray.length()];
-					   for (int j = 0; j < jsonArray.length();j++){ 
-						   peoples[i].b_week[j] = (Boolean) jsonArray.get(j);
-					   } 
-					} 
 				peoples[i].on_off = result.getInt(result.getColumnIndex(ON_OFF));
 				peoples[i].vibration_on_off = result.getInt(result.getColumnIndex(VIB_ON_OFF));
 				peoples[i].bell_url = result.getString(result.getColumnIndex(BELL_URL));
-				
+				peoples[i].time_type = result.getInt(result.getColumnIndex(TIME_TYPE));
+				peoples[i].time_index = result.getInt(result.getColumnIndex(TIME_INDEX));
 				result.moveToNext();
 			}
 		}catch(Exception e){
@@ -378,11 +365,12 @@ public class DBHelper {
 					HOUR+" ,"+
 					MINUTE+" ,"+
 					REMARKS+" ,"+
-					WEEK_JSON+" ,"+
 					ON_OFF+"  , "+
 					VIB_ON_OFF+" , "+
 					BELL_URL+" , "+
-					TABLE+
+					TABLE+" , "+
+					TIME_TYPE+" , "+
+					TIME_INDEX+
 					" from " + DB_REMIN_ITEM_TABLE + " where "+ _ID + " = ? ";
 			result = db.rawQuery(sql, new String[]{_id+""});
 			if(result == null)return null;
@@ -403,18 +391,12 @@ public class DBHelper {
 				peoples.hour = result.getInt(result.getColumnIndex(HOUR));
 				peoples.minute = result.getInt(result.getColumnIndex(MINUTE));
 				peoples.remarks = result.getString(result.getColumnIndex(REMARKS));
-				peoples.week_json = result.getString(result.getColumnIndex(WEEK_JSON));
-				JSONArray jsonArray = new JSONArray(peoples.week_json);
-				if (jsonArray != null) { 
-					peoples.b_week = new boolean[jsonArray.length()];
-					   for (int j = 0; j < jsonArray.length();j++){ 
-						   peoples.b_week[j] = (Boolean) jsonArray.get(i);
-					   } 
-					} 
 				peoples.on_off = result.getInt(result.getColumnIndex(ON_OFF));
 				peoples.vibration_on_off = result.getInt(result.getColumnIndex(VIB_ON_OFF));
 				peoples.bell_url = result.getString(result.getColumnIndex(BELL_URL));
 				peoples.table = result.getInt(result.getColumnIndex(TABLE));
+				peoples.time_type = result.getInt(result.getColumnIndex(TIME_TYPE));
+				peoples.time_index = result.getInt(result.getColumnIndex(TIME_INDEX));
 				result.moveToNext();
 			}
 		}catch(Exception e){

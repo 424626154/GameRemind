@@ -13,6 +13,43 @@
         android:background="#5f5f5f" />
 
     <RelativeLayout
+        android:id="@+id/notice_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/notice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="手机通知"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+		<TextView
+            android:id="@+id/notice_demo_tv"
+            android:layout_toRightOf="@id/notice_tv"
+            android:paddingLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="示例"
+            android:textColor="@color/color_4"
+            android:textSize="12dp" />
+        <com.widget.UISwitchButton
+            android:id="@+id/notice_open_send"
+            android:layout_width="32dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#5f5f5f" />
+
+    <RelativeLayout
         android:id="@+id/bell_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -14,8 +14,6 @@ public class Remind implements Serializable{
 	public int hour;
 	public int minute;
 	public String remarks;
-	public String week_json;
-	public boolean []b_week = new boolean [7];
 	//提醒开关
 	public int on_off = 0;
 	//提醒震动开关
@@ -26,5 +24,8 @@ public class Remind implements Serializable{
 	public MusicInfo musicInfo = null;
 	//标签
 	public int table = 0;
+	// 0月 1小时 2天 3周
+	public int time_type = -1;
+	public int time_index = -1;
 			
 }

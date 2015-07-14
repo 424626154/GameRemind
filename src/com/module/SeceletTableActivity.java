@@ -18,7 +18,11 @@ import android.widget.TextView;
 
 import com.base.BaseActivity;
 import com.qianghuai.gr.R;
-
+/**
+ * Ñ¡ÔñÍ¼±ê
+ * @author g
+ *
+ */
 public class SeceletTableActivity extends BaseActivity implements OnClickListener{
 	private RelativeLayout back_layout = null;
 	private TextView title = null;

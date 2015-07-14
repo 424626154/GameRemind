@@ -30,6 +30,8 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.base.BaseActivity;
 import com.data.Remind;
+import com.module.RepeatRemindActivity.TextInfo;
+import com.module.RepeatRemindActivity.WheelTextAdapter;
 import com.qianghuai.gr.R;
 import com.widget.UISwitchButton;
 /**
@@ -179,13 +181,20 @@ public class RemindListActivity extends BaseActivity implements OnClickListener{
 			final Remind remind = list.get(position);
 			viewHolder.time.setText(remind.hour+":"+remind.minute);
 			String repeat_str = "";
-			if(remind.b_week != null){
-				for(int i = 0 ;i < remind.b_week.length ; i ++){
-					if(remind.b_week[i]){
-						repeat_str += "星期"+i;
-					}
-				}
+			if(remind.time_type >= 0){
+				String [] wheel1s = new String[]{"月","小时","天","周"};
+				String [][]wheel0s = new String[][]{{"1","2","3","4","5","6","7","8","9","10","11","12"},
+						{"1","2","3","4","5","6","7","8","9","10","11","12",
+					"13","14","15","16","17","18","19","20","21","22","23","24"},
+					{"1","2","3","4","5","6","7","8","9","10","11","12",
+						"13","14","15","16","17","18","19","20","21","22","23","24"},
+						{"1","2","3","4","5","6","7","8","9","10","11","12"}
+				};
+				repeat_str = wheel0s[remind.time_type][remind.time_index]+wheel1s[remind.time_type];
+			}else{
+				
 			}
+			
 			if(TextUtils.isEmpty(repeat_str)){
 				viewHolder.repeat.setVisibility(View.GONE);
 			}else{

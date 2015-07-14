@@ -1,22 +1,24 @@
 package com.module;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.base.BaseActivity;
+import com.data.DataUtil;
 import com.qianghuai.gr.R;
+import com.util.Utils;
+import com.widget.wheelview.WheelView;
+import com.widget.wheelview.TosGallery;
 /**
  * 提醒重复
  * @author g
@@ -27,10 +29,13 @@ public class RepeatRemindActivity extends BaseActivity{
 		public RelativeLayout back_layout = null;
 		public RelativeLayout ok_layout = null;
 		public TextView ok_tv = null;
-		public ListView listview = null;
-		public List<Repeat> list = null;
-		public LayoutInflater infater = null;
-		public RepeatRemindAdapter adapter = null;
+		
+		
+		public ArrayList<TextInfo> wheel0Datas = new ArrayList<TextInfo>();
+		public ArrayList<TextInfo> wheel1Datas = new ArrayList<TextInfo>();
+		    
+		public WheelView wheel0 = null;
+		public WheelView wheel1 = null;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
@@ -42,9 +47,8 @@ public class RepeatRemindActivity extends BaseActivity{
 		public void initView(){
 			title = (TextView)findViewById(R.id.title);
 			back_layout = (RelativeLayout)findViewById(R.id.back_layout);
-			listview = (ListView)findViewById(R.id.listview);
 			
-			title.setText("重复");
+			title.setText("设置重复");
 			back_layout.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -58,103 +62,164 @@ public class RepeatRemindActivity extends BaseActivity{
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if(adapter != null &&adapter.list != null){
-						for(int i = 0 ; i < adapter.list.size() ; i ++){
-							MyApplication.getInstance().myData.remind.b_week[i] = adapter.list.get(i).b_select;
-						}
-					}
 					finish();
 				}
 			});
 			ok_tv = (TextView)findViewById(R.id.ok_tv);
 			ok_tv.setVisibility(View.VISIBLE);
 			ok_tv.setText("保存");
-			listview = (ListView)findViewById(R.id.listview);
-			list = new ArrayList<Repeat>();
-			if(MyApplication.getInstance().myData.remind.b_week != null){
-				for(int i = 0 ; i < MyApplication.getInstance().myData.remind.b_week.length ; i ++){
-					list.add(new Repeat("星期"+(i+1), MyApplication.getInstance().myData.remind.b_week[i]));
-				}
-			}
-			adapter = new RepeatRemindAdapter(RepeatRemindActivity.this, list);
-			listview.setAdapter(adapter);
-			listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					((Repeat)adapter.list.get(position)).b_select = !((Repeat)adapter.list.get(position)).b_select;
-					adapter.notifyDataSetChanged();	
-				}
-			});
-		}
-		class RepeatRemindAdapter extends BaseAdapter{
-			private Context context = null;
-			private List<Repeat> list = null;
-			public RepeatRemindAdapter(Context context,List<Repeat> list) {
-				this.context = context;
-				this.list = list;
-				infater = LayoutInflater.from(context);
-			}
-			@Override
-			public int getCount() {
-				// TODO Auto-generated method stub
-				if(list != null){
-					return list.size();
-				}
-				return 0;
-			}
-
-			@Override
-			public Object getItem(int position) {
-				// TODO Auto-generated method stub
-				return list.get(position);
-			}
-
-			@Override
-			public long getItemId(int position) {
-				// TODO Auto-generated method stub
-				return position;
-			}
-
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				ViewHolder holder = null;
-				if (convertView == null || convertView.getTag() == null) {
-					convertView = infater.inflate(R.layout.repeat_remind_item, null);
-					holder = new ViewHolder();
-					holder.repeat_layout = (RelativeLayout)convertView.findViewById(R.id.repeat_layout);
-					holder.repeat_tv = (TextView)convertView.findViewById(R.id.repeat_tv);
-					holder.quan1 = (ImageView)convertView.findViewById(R.id.quan1);
-					convertView.setTag(holder);
-				}else{
-					holder = (ViewHolder) convertView.getTag() ;
-				}
-				holder.repeat_tv.setText(list.get(position).title);
-				if(list.get(position).b_select){
-					holder.quan1.setVisibility(View.VISIBLE);
-				}else{
-					holder.quan1.setVisibility(View.INVISIBLE);
-				}
-				return convertView;
-			}
-			class ViewHolder{
-				RelativeLayout repeat_layout;
-				TextView repeat_tv;
-				ImageView quan1 ;
-			}
 			
+			int textSize = DataUtil.adjustFontSize(getWindow().getWindowManager());
+			
+			wheel0 = (WheelView)findViewById(R.id.wheel0);
+			wheel1 = (WheelView)findViewById(R.id.wheel1);
+	
+			
+			wheel0.setOnEndFlingListener(mListener);
+			wheel1.setOnEndFlingListener(mListener);
+
+			wheel0.setSoundEffectsEnabled(true);
+			wheel1.setSoundEffectsEnabled(true);
+
+			wheel0.setAdapter(new WheelTextAdapter(this));
+			wheel1.setAdapter(new WheelTextAdapter(this));
+			setWheel0(wheel0s[wheel1index]);
+
+			String [] wheel1s = new String[]{"月","小时","天","周"};
+			for (int i = 0; i < wheel1s.length; ++i) {
+				wheel1Datas.add(new TextInfo(i, wheel1s[i], (i == wheel1index)));
+			}
+			((WheelTextAdapter) wheel1.getAdapter()).setData(wheel1Datas);
+			
+			MyApplication.getInstance().myData.remind.time_index = 0;
+			MyApplication.getInstance().myData.remind.time_type = 0;
+		}		
+		String [][]wheel0s = new String[][]{{"1","2","3","4","5","6","7","8","9","10","11","12"},
+				{"1","2","3","4","5","6","7","8","9","10","11","12",
+				"13","14","15","16","17","18","19","20","21","22","23","24"},
+				{"1","2","3","4","5","6","7","8","9","10","11","12",
+					"13","14","15","16","17","18","19","20","21","22","23","24"},
+					{"1","2","3","4","5","6","7","8","9","10","11","12"}
+				};
+
+		public void setWheel0(String[]wheel0s){
+			wheel0index = 0;
+			wheel0Datas.clear();
+			for (int i = 0; i < wheel0s.length; ++i) {
+				wheel0Datas.add(new TextInfo(i, wheel0s[i], (i == wheel0index)));
+			}
+			((WheelTextAdapter) wheel0.getAdapter()).setData(wheel0Datas);
 		}
 		
-		class Repeat {
-			String title ;
-			Boolean b_select;
-			public Repeat() {
-			}
-			public Repeat(String title,Boolean b_select) {
-				this.title = title;
-				this.b_select = b_select;
-			}
-		}
+
+	    protected class WheelTextAdapter extends BaseAdapter {
+	        ArrayList<TextInfo> mData = null;
+	        int mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
+	        int mHeight = 50;
+	        Context mContext = null;
+
+	        public WheelTextAdapter(Context context) {
+	            mContext = context;
+	            mHeight = (int) Utils.pixelToDp(context, mHeight);
+	        }
+
+	        public void setData(ArrayList<TextInfo> data) {
+	            mData = data;
+	            this.notifyDataSetChanged();
+	        }
+
+	        public void setItemSize(int width, int height) {
+	            mWidth = width;
+	            mHeight = (int) Utils.pixelToDp(mContext, height);
+	        }
+
+	        @Override
+	        public int getCount() {
+	            return (null != mData) ? mData.size() : 0;
+	        }
+
+	        @Override
+	        public Object getItem(int position) {
+	            return null;
+	        }
+
+	        @Override
+	        public long getItemId(int position) {
+	            return 0;
+	        }
+
+	        @Override
+	        public View getView(int position, View convertView, ViewGroup parent) {
+	            TextView textView = null;
+
+	            if (null == convertView) {
+	                convertView = new TextView(mContext);
+	                convertView.setLayoutParams(new TosGallery.LayoutParams(mWidth, mHeight));
+	                textView = (TextView) convertView;
+	                textView.setGravity(Gravity.CENTER);
+	                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+	                textView.setTextColor(Color.BLACK);
+	            }
+
+	            if (null == textView) {
+	                textView = (TextView) convertView;
+	            }
+
+	            TextInfo info = mData.get(position);
+	            textView.setText(info.mText);
+	            textView.setTextColor(info.mColor);
+
+	            return convertView;
+	        }
+	    }
+	    
+	    
+	    private TosGallery.OnEndFlingListener mListener = new TosGallery.OnEndFlingListener() {
+	        @Override
+	        public void onEndFling(TosGallery v) {
+	            int pos = v.getSelectedItemPosition();
+
+	            if (v == wheel0) {
+	                TextInfo info = wheel0Datas.get(pos);
+	                setWheel0(info.mIndex);
+	            } else if (v == wheel1) {
+	                TextInfo info = wheel1Datas.get(pos);
+	                setWheel1(info.mIndex);
+	            }
+	        }
+	    };
+	    
+	    protected class TextInfo {
+	        public TextInfo(int index, String text, boolean isSelected) {
+	            mIndex = index;
+	            mText = text;
+	            mIsSelected = isSelected;
+
+	            if (isSelected) {
+	                mColor = Color.BLUE;
+	            }
+	        }
+
+	        public int mIndex;
+	        public String mText;
+	        public boolean mIsSelected = false;
+	        public int mColor = Color.BLACK;
+	    }
+	    int wheel0index = 0;
+	    int wheel1index = 0;
+	    private void setWheel0(int wheel0Index) {
+	        if (wheel0index != wheel0Index) {
+	        	wheel0index = wheel0Index;
+	        	MyApplication.getInstance().myData.remind.time_index = wheel0index;
+	        }
+	    }
+
+	    private void setWheel1(int wheel1Index) {
+	        if (wheel1index != wheel1Index) {
+	        	wheel1index = wheel1Index;
+	        	setWheel0(wheel0s[wheel1index]);
+	        	MyApplication.getInstance().myData.remind.time_type = wheel1index;
+	        }
+	    }
+
 }

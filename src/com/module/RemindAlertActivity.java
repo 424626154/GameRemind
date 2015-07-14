@@ -75,7 +75,9 @@ public class RemindAlertActivity extends BaseActivity implements OnClickListener
 		title.setText("”Œœ∑Ã·–—");
 		List<Remind>list = new ArrayList<Remind>();
 		Remind remind = MyApplication.getInstance().dbHelper.queryRemind(_id);
-		list.add(remind);
+		if(remind != null){
+			list.add(remind);
+		}
 		RemindAdapter adapter = new RemindAdapter(this, list);
 		listview = (ListView)findViewById(R.id.listview);
 		listview.setAdapter(adapter);
